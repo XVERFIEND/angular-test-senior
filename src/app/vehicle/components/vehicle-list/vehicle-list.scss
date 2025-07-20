@@ -1,0 +1,116 @@
+@use "colours";
+
+.list-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 3rem 1rem;
+  box-sizing: border-box;
+
+  .list-card {
+    max-width: 48rem;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem;
+    background-color: colours.$white;
+    border-radius: 0.75rem;
+    box-shadow: 0 20px 25px -5px colours.$shadow-medium, 0 10px 10px -5px colours.$shadow-dark;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    @media (max-width: 640px) {
+      padding: 1.5rem;
+      max-width: 95%;
+    }
+
+    .main-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: colours.$text-dark;
+      text-align: center;
+      margin-bottom: 1.5rem;
+
+      @media (max-width: 640px) {
+        font-size: 1.5rem;
+      }
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+
+      @media (min-width: 640px) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+
+      .input-field,
+      .select-field {
+        box-shadow: 0 1px 2px 0 colours.$shadow-light;
+        appearance: none;
+        border: 1px solid colours.$light-border-gray;
+        border-radius: 0.5rem;
+        padding: 0.5rem 1rem;
+        color: colours.$dark-gray;
+        line-height: 1.5;
+        transition: all 0.2s ease;
+        background-color: colours.$white;
+
+        &:focus {
+          outline: none;
+          box-shadow: 0 0 0 3px colours.$button-focus;
+          border-color: transparent;
+        }
+      }
+
+      .input-field {
+        width: calc(100% - 2rem);
+      }
+
+      .select-field {
+        width: 100%;
+      }
+    }
+
+    .vehicle-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .message {
+      text-align: center;
+      padding: 1.5rem 0;
+      background-color: colours.$light-gray;
+      border-radius: 0.5rem;
+      box-shadow: 0 1px 2px 0 colours.$shadow-light;
+      color: colours.$medium-gray;
+      font-size: 1.125rem;
+    }
+
+    .error-message {
+      background-color: colours.$error-background;
+      border: 1px solid colours.$error-border;
+      color: colours.$error-text;
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px -1px colours.$shadow-medium, 0 2px 4px -1px colours.$shadow-lg-light;
+      font-weight: 600;
+    }
+
+    .count-message {
+      text-align: right;
+      margin-top: 1.5rem;
+      color: colours.$medium-gray;
+      font-size: 0.875rem;
+    }
+  }
+}

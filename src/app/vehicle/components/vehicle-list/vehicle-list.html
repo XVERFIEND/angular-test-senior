@@ -1,0 +1,45 @@
+<div class="list-container">
+  <div class="list-card">
+    <div class="controls">
+      <input
+        type="text"
+        [formControl]="searchControl"
+        placeholder="Search vehicles..."
+        class="input-field"
+      />
+
+      <select [formControl]="sortTypeControl" class="select-field">
+        @for (option of vehicleSortOptions; track option.sortType) {
+        <option [value]="option.sortType">Sort by: {{ option.label }}</option>
+        }
+      </select>
+
+      <select [formControl]="sortDirectionControl" class="select-field">
+        @for (option of directionSortOptions; track option.sortType) {
+        <option [value]="option.sortType">Direction: {{ option.label }}</option>
+        }
+      </select>
+    </div>
+
+    @if (loading()) {
+    <div class="message loading-spinner">Loading vehicles...</div>
+    } @if (error(); as errorValue) {
+    <div class="error-message">Error: {{ errorValue }}</div>
+    } @if (vehicles(); as vehiclesList) {
+    <div class="vehicle-list">
+      @for (vehicle of vehiclesList; track vehicle.id) {
+      <app-vehicle-list-item
+        [vehicle]="vehicle"
+        (selected)="onVehicleSelected(vehicle.id)"
+      ></app-vehicle-list-item>
+      } @empty { @if (!loading() && !error()) {
+      <div class="message no-vehicles-found">No vehicles found.</div>
+      } }
+    </div>
+    @if (vehiclesList.length > 0) {
+    <div class="count-message">{{ vehiclesList.length }} vehicles found</div>
+    } } @else { @if (!loading() && !error()) {
+    <div class="message no-vehicles-found">No vehicles found.</div>
+    } }
+  </div>
+</div>
